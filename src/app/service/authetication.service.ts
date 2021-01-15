@@ -10,6 +10,8 @@ import {User} from "../model/User";
 export class AutheticationService {
 
   private host = environment.apiUrl;
+  private token: string = '';
+  private loggedInUserName: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +25,14 @@ export class AutheticationService {
     return this.http.post<HttpResponse<any> | HttpErrorResponse>(
         `${this.host}/user/register`, user
     );
+  }
+
+  public logout(): void {
+    this.token = '';
+    this.loggedInUserName = '';
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('users');
   }
 
 }
