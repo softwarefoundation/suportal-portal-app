@@ -48,4 +48,8 @@ export class AutheticationService {
     return JSON.parse(localStorage.getItem('user') as string);
   }
 
+  public loadToken(): void {
+    this.token = localStorage.getItem('token') as string;
+  }
+
 }
