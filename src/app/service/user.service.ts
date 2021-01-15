@@ -51,4 +51,17 @@ export class UserService {
    return [];
   }
 
+  public createUserFormData(loggedInUserName:string, user: User, profileImage: File): FormData {
+    const formData = new FormData();
+    formData.append('currentUsername',loggedInUserName);
+    formData.append('nome',user.nome);
+    formData.append('sobrenome',user.sobrenome);
+    formData.append('username',user.username);
+    formData.append('email',user.email);
+    formData.append('profileImage',profileImage);
+    formData.append('ativo',JSON.stringify(user.ativo));
+    formData.append('bloqueado',JSON.stringify(user.bloqueado));
+    return formData;
+  }
+
 }
