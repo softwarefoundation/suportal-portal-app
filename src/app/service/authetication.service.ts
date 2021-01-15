@@ -52,4 +52,8 @@ export class AutheticationService {
     this.token = localStorage.getItem('token') as string;
   }
 
+  public getToken(): string {
+    return this.token;
+  }
+
 }
