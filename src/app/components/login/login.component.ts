@@ -4,6 +4,8 @@ import {AutheticationService} from "../../service/authetication.service";
 import {User} from "../../model/User";
 import {Subscription} from "rxjs";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {NotificationTypeEnum} from "../../enum/notification-type.enum";
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(private router:Router,
-              private autheticationService:AutheticationService) { }
+              private autheticationService:AutheticationService,
+              private notificationService:NotificationService) { }
 
   ngOnInit(): void {
     if(this.autheticationService.isLoggedIn()){
@@ -37,6 +40,10 @@ export class LoginComponent implements OnInit, OnDestroy {
               this.autheticationService.addUserToLocalCache(response.body as User);
               this.router.navigateByUrl('/user/management');
               this.showLoading = false;
+            },
+            (errorResponse:HttpErrorResponse) =>{
+              console.log(errorResponse);
+              this.sendErrorNotification(NotificationTypeEnum.ERROR,errorResponse.error.message)
             }
         )
     )
@@ -45,4 +52,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
+  private sendErrorNotification(notificationTypeEnum: NotificationTypeEnum, message: string) {
+    if(message){
+        this.notificationService.notify(notificationTypeEnum, message);
+    } else {
+        this.notificationService.notify(notificationTypeEnum, ':( Ocorreu algo inesperado. Por favor, tente novamente!');
+    }
+  }
 }
