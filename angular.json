@@ -108,5 +108,8 @@
       }
     }
   },
-  "defaultProject": "suporte-portal-app"
+  "defaultProject": "suporte-portal-app",
+  "cli": {
+    "analytics": "1ffb2dfa-f1d3-49f5-92af-cd6ea053c28b"
+  }
 }
