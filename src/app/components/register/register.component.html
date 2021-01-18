@@ -1,1 +1,40 @@
-<p>register works!</p>
+<!--login modal-->
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="text-center"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle"><br></h2>
+            </div>
+            <div class="modal-body">
+                <form #loginForm="ngForm" (ngSubmit)="onRegister(loginForm.value)" class="form col-md-12 center-block">
+                    <div class="form-group">
+                        <input ngModel #nomeInput="ngModel" type="text" class="form-control input-lg" placeholder="Nome completo" name="nome" >
+                    </div>
+                    <span style="color: red" *ngIf="nomeInput.invalid && nomeInput.touched" >Por favor, digite seu nome de usuario</span>
+
+                    <div class="form-group">
+                        <input ngModel #usernameInput="ngModel" type="text" class="form-control input-lg" placeholder="Nome de usuário" name="username" >
+                    </div>
+                    <span style="color: red" *ngIf="usernameInput.invalid && usernameInput.touched" >Por favor, digite seu nome de usuario</span>
+
+                    <div class="form-group">
+                        <input ngModel #emailInput="ngModel" type="text" class="form-control input-lg" placeholder="E-mail" name="email" >
+                    </div>
+                    <span style="color: red" *ngIf="emailInput.invalid && emailInput.touched" >Por favor, digite seu nome de usuario</span>
+
+                    <div class="form-group">
+                        <button type="submit" [disabled]="loginForm.invalid || showLoading" class="btn btn-primary btn-lg btn-block">Cadastrar</button>
+                        <span class="pull-right"><a routerLink="/login">Login</a></span><span><a href="#">Ajuda</a></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
