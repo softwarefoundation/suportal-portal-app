@@ -23,8 +23,8 @@ export class AutheticationService {
     );
   }
 
-  public register (user:User):Observable<HttpResponse<any> | HttpErrorResponse>{
-    return this.http.post<HttpResponse<any> | HttpErrorResponse>(
+  public register (user:User):Observable<User>{
+    return this.http.post<User>(
         `${this.host}/user/register`, user
     );
   }

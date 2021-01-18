@@ -54,10 +54,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  private sendErrorNotification(notificationTypeEnum: NotificationTypeEnum, message: string) {
+  private sendErrorNotification(notificationTypeEnum: NotificationTypeEnum, message: string): void {
     if(message){
+        console.log(message);
         this.notificationService.notify(notificationTypeEnum, message);
     } else {
+        console.log(':( Ocorreu algo inesperado. Por favor, tente novamente!');
         this.notificationService.notify(notificationTypeEnum, ':( Ocorreu algo inesperado. Por favor, tente novamente!');
     }
   }
