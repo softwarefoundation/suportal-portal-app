@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {NotificationTypeEnum} from "../../enum/notification-type.enum";
 import {NotificationService} from "../../service/notification.service";
+import {HeaderTypeEnum} from "../../enum/header-type.enum";
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
         this.autheticationService.login(user).subscribe(
             (response: HttpResponse<User>) => {
-              const token = response.headers.get('Jwt-Token');
+              const token = response.headers.get(HeaderTypeEnum.JWT_TOKEN);
               this.autheticationService.saveToken(token as string);
               this.autheticationService.addUserToLocalCache(response.body as User);
               this.router.navigateByUrl('/user/management');
