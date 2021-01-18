@@ -9,11 +9,11 @@
             <div class="modal-body">
                 <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)" class="form col-md-12 center-block">
                     <div class="form-group">
-                        <input ngModel #usernameInput="ngModel" type="text" class="form-control input-lg" placeholder="Username" name="username" >
+                        <input ngModel #usernameInput="ngModel" type="text" class="form-control input-lg" placeholder="Nome de usuário" name="username" >
                     </div>
                     <span style="color: red" *ngIf="usernameInput.invalid && usernameInput.touched" >Por favor, digite seu nome de usuario</span>
                     <div class="form-group">
-                        <input ngModel #passwordInput="ngModel" type="password" class="form-control input-lg" placeholder="Password" name="password">
+                        <input ngModel #passwordInput="ngModel" type="password" class="form-control input-lg" placeholder="Senha" name="senha">
                     </div>
                     <span style="color: red" *ngIf="passwordInput.invalid && passwordInput.touched" >Por favor, informe sua senha</span>
                     <div class="form-group">
